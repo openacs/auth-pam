@@ -13,7 +13,7 @@
         <vendor url="http://www.collaboraid.biz">Collaboraid</vendor>
         <description format="text/plain">Provides authentication and password management drivers for authenticating through PAM on the host operating system. Requires the nspam module for AOLserver.</description>
 
-        <!-- No dependency information -->
+        <requires url="acs-authentication" version="5.0d3"/>
 
         <callbacks>
             <callback type="after-install"  proc="auth::pam::after_install"/>
