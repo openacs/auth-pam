@@ -9,9 +9,10 @@
     
     <version name="1.0d1" url="http://openacs.org/repository/download/apm/auth-pam-1.0d1.apm">
         <owner url="mailto:lars@collaboraid.biz">Lars Pind</owner>
+        <summary>PAM authentication drivers for acs-authentication.</summary>
         <summary>Authentication and password management drivers for PAM.</summary>
         <vendor url="http://www.collaboraid.biz">Collaboraid</vendor>
-        <description format="text/plain">Provides authentication and password management drivers for authenticating through PAM on the host operating system. Requires the nspam module for AOLserver.</description>
+        <description format="text/html">Implements the PAM authentication, password management, and other drivers for use with the acs-authentication service contracts.</description>
 
         <requires url="acs-authentication" version="5.0d3"/>
 
