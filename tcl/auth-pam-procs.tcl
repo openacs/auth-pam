@@ -65,6 +65,7 @@ ad_proc -private auth::pam::authentication::Authenticate {
     username
     password
     {parameters {}}
+    {authority_id {}}
 } {
     Implements the Authenticate operation of the auth_authentication 
     service contract for PAM.
@@ -126,6 +127,7 @@ ad_proc -private auth::pam::password::ChangePassword {
     old_password
     new_password
     {parameters {}}
+    {authority_id {}}
 } {
     Implements the ChangePassword operation of the auth_password 
     service contract for PAM.
@@ -151,6 +153,7 @@ ad_proc -private auth::pam::password::RetrievePassword {
 ad_proc -private auth::pam::password::ResetPassword {
     username
     parameters
+    {authority_id {}}
 } {
     Implements the ResetPassword operation of the auth_password 
     service contract for PAM.
