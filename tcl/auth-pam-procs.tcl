@@ -124,20 +124,41 @@ ad_proc -private auth::pam::password::CanResetPassword {
 
 ad_proc -private auth::pam::password::ChangePassword {
     username
-    old_password
     new_password
+    {old_password ""}
     {parameters {}}
     {authority_id {}}
 } {
     Implements the ChangePassword operation of the auth_password 
     service contract for PAM.
 } {
-    if { [ns_pam chpass $username $old_password $new_passwd] } {
-        set result(password_status) ok
-    } else {
-        set result(password_status) auth_error
-    }
 
+    if ![empty_string_p $old_password] {
+	if { [ns_pam chpass $username $old_password $new_passwd] } {
+	    set result(password_status) ok
+	} else {
+	    set result(password_status) auth_error
+	}
+    } else {
+	# TODO:
+	# 'ns_pam chpass' requires the old password, so we need to
+	# set the old_password as optional parameter in ns_pam chpass.
+	#
+	# ns_pam chpass username oldpassword newpasswd
+	#
+	# This is the change password command syntax. You supply the username old password and new password. you will be returned either:
+	#
+	# - 1 for a valid login
+	# - 0 Indicating a bad username/password combo
+	# It will return NS_ERROR and the string of the PAM error if there is an error. 
+
+	if { [ns_pam chpass $username $old_password $new_passwd] } {
+	    set result(password_status) ok
+	} else {
+	    ns_log error "auth-pam-procs.tcl: old password error"
+	    set result(password_status) auth_error
+	}
+    }
     return [array get result]
 }
 
