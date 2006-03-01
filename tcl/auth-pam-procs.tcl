@@ -21,6 +21,7 @@ ad_proc -private auth::pam::after_install {} {} {
         aliases {
             Authenticate auth::pam::authentication::Authenticate
             GetParameters auth::pam::authentication::GetParameters
+	    MergeUser auth::pam::authentication::MergeUser
         }
     }
 
@@ -186,4 +187,10 @@ ad_proc -private auth::pam::password::GetParameters {} {
     service contract for PAM.
 } {
     return [list]
+}
+
+ad_proc -private auth::pam::password::MergeUser {} {
+    Implements the MergeUser operation of the auth_password
+    service contract for PAM.
+} {
 }
